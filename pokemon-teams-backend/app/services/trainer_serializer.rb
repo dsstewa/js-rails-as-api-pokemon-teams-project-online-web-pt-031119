@@ -4,15 +4,17 @@ class TrainerSerializer
         @trainer = trainer_object
       end
        
-
       def to_serialized_json
-        @trainer.to_json(:include => {
-                     :bird => {:only => [:name, :species]},
-                    :location => {:only => [:latitude, :longitude]}
-        },
-         :except => [:updated_at])
+        options = {
+          include: { 
+            pokemons: {
+              only: [:id, :species, :nickname, :trainer_id]
+            }
+          },
+         except: [:created_at, :updated_at]
+        }
+        
+      @trainer.to_json(options)  
+    
       end
-
-
-
 end
