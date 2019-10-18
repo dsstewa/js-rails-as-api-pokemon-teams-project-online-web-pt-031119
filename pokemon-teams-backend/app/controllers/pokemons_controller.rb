@@ -10,10 +10,15 @@ class PokemonsController < ApplicationController
     end
 
     def create
+      binding.pry
       
     end
 
-
+    def destroy
+      pokemon = Pokemon.find_by_id(params[:id]).destroy
+      render json: pokemon
+      
+    end
 
 
 end
