@@ -9,8 +9,16 @@ class PokemonsController < ApplicationController
       @pokemon = Pokemon.new
     end
 
-    def create
-      binding.pry
+    
+      def create
+        tr = Trainer.find_by(id: params[:trainer_id])
+        if tr.pokemons.length < 6
+            name = Faker::Name.first_name
+            species = Faker::Games::Pokemon.name
+            pokemon = Pokemon.create(nickname: name, species: species, trainer_id: params[:trainer_id])
+            render json: pokemon
+        end 
+    
       
     end
 

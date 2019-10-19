@@ -4,7 +4,10 @@ const POKEMONS_URL = `${BASE_URL}/pokemons`
 
 const main = document.getElementsByTagName('main')[0];
 
-
+document.addEventListener("DOMContentLoaded", () => {
+    fetchTrainers()
+   }, false);
+   
 
 let fetchTrainers = () => {
     return fetch(TRAINERS_URL)
@@ -98,9 +101,7 @@ let addPokemon = (trainer) => {
     return fetch(url,configObject)
            .then(resp => resp.json())
            .then(function(data2) {
-               debugger
-            li = document.getElementById(`p${data2.id}`)
-            li.remove()
+            createPokemon(data2)
            })
    
  
